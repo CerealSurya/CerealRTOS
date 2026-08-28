@@ -14,6 +14,7 @@ SYSCONFIG := $(TI_ROOT)/ccs2020/ccs/utils/sysconfig_1.24.0/sysconfig_cli.sh
 SDK_DIR := $(CURDIR)/mspm0_sdk_2_03_00_07
 SDK_STARTUP_SRC := $(SDK_DIR)/source/ti/devices/msp/m0p/startup_system_files/ticlang/startup_mspm0g350x_ticlang.c
 SDK_LINKER_CMD := $(SDK_DIR)/source/ti/devices/msp/m0p/linker_files/ticlang/mspm0g3507.cmd
+SDK_DRIVERLIB := $(SDK_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a
 
 
 # ============================================================
@@ -148,6 +149,7 @@ $(BUILD)/$(TARGET).out: sysconfig $(OBJS) $(SYSCFG_OBJS) $(SDK_LINKER_CMD)
 		$(LDFLAGS) \
 		$(OBJS) \
 		$(SYSCFG_OBJS) \
+		$(SDK_DRIVERLIB) \
 		-o $@
 
 
