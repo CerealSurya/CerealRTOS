@@ -10,6 +10,21 @@ void rtos_task_create(rtos_task_t *task, void (*entry)(void))
     uint32_t *sp = &task->stack[RTOS_STACK_SIZE];
 
     /*
+     * Software-saved registers.
+     *
+     * We aren't context-switching yet, so these just
+     * need valid initial values.
+     */
+    *(--sp) = (uint32_t)0xBEEF;  // R4
+    *(--sp) = (uint32_t)0;  // R5
+    *(--sp) = (uint32_t)0;  // R6
+    *(--sp) = (uint32_t)0;  // R7
+    *(--sp) = (uint32_t)0;  // R8
+    *(--sp) = (uint32_t)0;  // R9
+    *(--sp) = (uint32_t)0;  // R10
+    *(--sp) = (uint32_t)0;  // R11
+
+    /*
      * Hardware-saved exception frame.
      *
      * This is what the Cortex-M expects to find when
@@ -23,22 +38,7 @@ void rtos_task_create(rtos_task_t *task, void (*entry)(void))
     *(--sp) = (uint32_t)0;                  // R3
     *(--sp) = (uint32_t)0;                  // R2
     *(--sp) = (uint32_t)0;                  // R1
-    *(--sp) = (uint32_t)0xBEEF;                  // R0
-
-    /*
-     * Software-saved registers.
-     *
-     * We aren't context-switching yet, so these just
-     * need valid initial values.
-     */
-    // *(--sp) = 0;  // R4
-    // *(--sp) = 0;  // R5
-    // *(--sp) = 0;  // R6
-    // *(--sp) = 0;  // R7
-    // *(--sp) = 0;  // R8
-    // *(--sp) = 0;  // R9
-    // *(--sp) = 0;  // R10
-    // *(--sp) = 0;  // R11
+    *(--sp) = (uint32_t)0;                  // R0
 
     task->sp = sp;
 }
