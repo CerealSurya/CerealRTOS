@@ -22,7 +22,6 @@ const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
  */
 GPIO1.$name                                 = "GPIO_GRP_0";
 GPIO1.associatedPins[0].$name               = "PIN_0";
-GPIO1.associatedPins[0].assignedPort        = "PORTA";
 GPIO1.associatedPins[0].assignedPortSegment = "Lower";
 GPIO1.associatedPins[0].assignedPin         = "0";
 
@@ -35,7 +34,7 @@ const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
  * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
  * re-solve from scratch.
  */
-GPIO1.associatedPins[0].pin.$suggestSolution = "j19_expansion.9";
+GPIO1.associatedPins[0].pin.$suggestSolution = "boosterpack.12";
 Board.peripheral.$suggestSolution            = "DEBUGSS";
 Board.peripheral.swclkPin.$suggestSolution   = "j25_expansion.16";
 Board.peripheral.swdioPin.$suggestSolution   = "j25_expansion.14";

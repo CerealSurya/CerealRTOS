@@ -34,7 +34,7 @@ RTOS_DIR := rtos
 # ============================================================
 
 C_SRCS := main.c rtos/rtos.c
-ASM_SRCS := rtos/rtos_start.s
+ASM_SRCS := rtos/context.s rtos/startup.s
 
 C_OBJS := $(patsubst %.c,$(BUILD)/%.o,$(notdir $(C_SRCS)))
 ASM_OBJS := $(patsubst %.s,$(BUILD)/%.o,$(notdir $(ASM_SRCS)))
@@ -115,7 +115,11 @@ $(BUILD)/rtos.o: rtos/rtos.c
 	@mkdir -p $(BUILD)
 	$(TI_ARM_CLANG) $(CFLAGS) -c $< -o $@
 
-$(BUILD)/rtos_start.o: rtos/rtos_start.s
+$(BUILD)/context.o: rtos/context.s
+	@mkdir -p $(BUILD)
+	$(TI_ARM_CLANG) $(CFLAGS) -c $< -o $@
+
+$(BUILD)/startup.o: rtos/startup.s
 	@mkdir -p $(BUILD)
 	$(TI_ARM_CLANG) $(CFLAGS) -c $< -o $@
 
