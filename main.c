@@ -23,12 +23,13 @@ void task2_main(void)
 int main(void)
 {
     SYSCFG_DL_init();
-    rtos_init();
 
     rtos_task_create(&task1, task1_main);
     rtos_task_create(&task2, task2_main);
-    rtos_start(&task1); 
-    rtos_start(&task2);
+
+    rtos_init();
+
+    rtos_start(&task1);
 }
 
 //PA0 - single red LED, PB26, PB27, PB22 Red, green, blue

@@ -1,5 +1,11 @@
     .syntax unified
+    .cpu cortex-m0plus
     .thumb
+
+    .global PendSV_Handler
+    .extern current_task
+    .extern next_task
+    .type PendSV_Handler, %function
 
 /*
  * save_software_stack_asm(rtos_task_t *task)

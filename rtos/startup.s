@@ -4,13 +4,11 @@
 
     .global rtos_start
     .global SVC_Handler
-    .global PendSV_Handler
     .extern current_task
     .extern next_task
 
     .type rtos_start, %function
     .type SVC_Handler, %function
-    .type PendSV_Handler, %function
 
 /*
  * ---------------------------------------------------------
@@ -31,6 +29,8 @@
 rtos_start:
     LDR     R1, =current_task
     STR     R0, [R1]
+    LDR     R1, =next_task
+    STR     R0, [R1]              /* next_task = first task, fixes stale next when rtos_init() ran before create */
     SVC     #0
     B       .
 
