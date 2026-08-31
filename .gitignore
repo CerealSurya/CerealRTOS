@@ -2,3 +2,4 @@ build/*
 ap
 mspm0_sdk_2_03_00_07/*
 .vscode/*
+.DS_Store
